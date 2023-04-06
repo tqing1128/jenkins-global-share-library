@@ -7,8 +7,13 @@
 
 import org.devops.DingtalkRobot
 
+@groovy.transform.Field
 def robots = []
+
+@groovy.transform.Field
 def random = new Random()
+
+@groovy.transform.Field
 def markdownTemplateConfig = [
     template_1: [
         success: {
@@ -46,15 +51,15 @@ def markdownTemplateConfig = [
 
 private def selectRobot(name) {
     if(name) {
-        for (robot in this.robots) {
+        for (robot in robots) {
             if(robot.getName() == name) {
                 return robot
             }
         }
     } else {
-        def index = this.random.nextInt(this.robots.size())
+        def index = random.nextInt(robots.size())
         println "select robot index: ${index}"
-        return this.robots[index]
+        return robots[index]
     }
 }
 
@@ -77,8 +82,8 @@ private def getTemplate(msgType, text) {
             def template = text.split(/\./)
             def templateName = template[0]
             def templateType = template[1]
-            if(this.markdownTemplateConfig[templateName]) {
-                def templateFunc = this.markdownTemplateConfig[templateName][templateType]
+            if(markdownTemplateConfig[templateName]) {
+                def templateFunc = markdownTemplateConfig[templateName][templateType]
                 if(templateFunc) {
                     return templateFunc()
                 } else {
@@ -112,7 +117,7 @@ private def parseText(msgType, text) {
 def init(robotConfigList) {
     for (config in robotConfigList) {
         def robot = new DingtalkRobot(config.name, config.token, config.secret)
-        this.robots.add(robot)
+        robots.add(robot)
     }
 }
 
