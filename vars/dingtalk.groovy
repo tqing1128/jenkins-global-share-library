@@ -7,7 +7,7 @@
 
 import org.devops.DingtalkRobot
 
-@groovy.transform.Field
+// @groovy.transform.Field
 this.robots = []
 
 @groovy.transform.Field
