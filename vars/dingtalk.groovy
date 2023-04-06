@@ -8,7 +8,7 @@
 import org.devops.DingtalkRobot
 
 @groovy.transform.Field
-private def robots = []
+final private def robots = []
 
 @groovy.transform.Field
 def random = new Random()
