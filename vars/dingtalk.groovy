@@ -117,7 +117,7 @@ private def parseText(msgType, text) {
 def init(robotConfigList) {
     for (config in robotConfigList) {
         def robot = new DingtalkRobot(config.name, config.token, config.secret)
-        robots.add(robot)
+        this.robots.add(robot)
     }
 }
 
