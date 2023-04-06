@@ -57,7 +57,7 @@ private def selectRobot(name) {
             }
         }
     } else {
-        def index = random.nextInt(robots.size())
+        def index = this.random.nextInt(robots.size())
         println "select robot index: ${index}"
         return robots[index]
     }
