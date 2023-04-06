@@ -8,7 +8,7 @@
 import org.devops.DingtalkRobot
 
 // @groovy.transform.Field
-this.robots = []
+def robots = []
 
 @groovy.transform.Field
 def random = new Random()
@@ -117,7 +117,7 @@ private def parseText(msgType, text) {
 def init(robotConfigList) {
     for (config in robotConfigList) {
         def robot = new DingtalkRobot(config.name, config.token, config.secret)
-        this.robots.add(robot)
+        robots.add(robot)
     }
 }
 
