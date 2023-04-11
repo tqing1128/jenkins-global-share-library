@@ -5,7 +5,7 @@
     date: 2023-03-31 17:43:48
 */
 
-import groovy.json.JsonSlurper
+import groovy.json.JsonSlurperClassic
 
 def getClusterList(host, token) {
     def url = "http://${host}/openapi/v1/apps/pp/envclusters"
@@ -20,7 +20,7 @@ def getClusterList(host, token) {
     if(status.equals(200)) {
         def content = connection.getInputStream().getText()
         println("response content: ${content}")
-        def ret = new JsonSlurper().parseText(content)
+        def ret = new JsonSlurperClassic().parseText(content)
         return ret
     } else {
         return [:]
