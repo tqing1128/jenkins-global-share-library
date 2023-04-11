@@ -6,9 +6,5 @@
 */
 
 def call() {
-    def config
-    node {
-        config = load "${env.JENKINS_PROJECT_CONFIG_DIR}/project_config.groovy"
-    }
-    return config
+    return load("${env.JENKINS_PROJECT_CONFIG_DIR}/project_config.groovy")
 }
