@@ -7,8 +7,8 @@
 
 import groovy.json.JsonSlurperClassic
 
-def getClusterList(host, token) {
-    def url = "http://${host}/openapi/v1/apps/pp/envclusters"
+def getClusterList(appId, host, token) {
+    def url = "http://${host}/openapi/v1/apps/${appId}/envclusters"
     def connection = new URL(url).openConnection();
     connection.setRequestMethod("GET")
     connection.setDoOutput(true)
