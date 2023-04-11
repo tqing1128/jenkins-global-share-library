@@ -6,7 +6,9 @@
 */
 
 def call() {
-    def content = new File("${env.JENKINS_HOME}", "project_config.properties").getText()
-    def props = utils.transformStringToMap target:content , elementDelimiter: "\n", keyValueDelimiter: '='
-    return props
+    def config
+    node {
+        config = load "${env.JENKINS_HOME}/project_config.groovy"
+    }
+    return config
 }
