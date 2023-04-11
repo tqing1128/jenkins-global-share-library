@@ -38,5 +38,6 @@ def write(map) {
 
     def historyProperties = utils.transformMapToString target: map.params, keyValueDelimiter: "=", elementDelimiter: "\n"
     println "history: ${historyProperties}"
-    new File("${env.WORKSPACE}", "history_${env.BUILD_USER_ID}.properties").write(historyProperties)
+    writeFile file:"history_${env.BUILD_USER_ID}.properties", text:historyProperties
+    // new File("${env.WORKSPACE}", "history_${env.BUILD_USER_ID}.properties").write(historyProperties)
 }
