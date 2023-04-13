@@ -5,18 +5,19 @@
     date: 2023-03-31 17:44:17
 
     用于加载基础环境变量，包括：
-    1. JENKINS_PROJECT_CONFIG_DIR: 项目配置文件目录
-    2. JENKINS_WORKSPACE: Jenkins 工作目录
-    3. WORKSPACE: Jenkins Job 工作目录
-    4. BUILD_DATE: 构建日期
-    5. BUILD_TIMESTAMP: 构建时间戳
-    6. BUILD_USER_NAME: 构建用户名称
-    7. BUILD_USER_ID: 构建用户 ID
-    8. REASON: 失败原因
+    1. JENKINS_WORKSPACE: Jenkins 工作目录
+    2. WORKSPACE: Jenkins Job 工作目录
+    3. BUILD_DATE: 构建日期
+    4. BUILD_TIMESTAMP: 构建时间戳
+    5. BUILD_USER_NAME: 构建用户名称
+    6. BUILD_USER_ID: 构建用户 ID
+    7. REASON: 失败原因
 */
 
 def call() {
     node {
+        env.JENKINS_DATA_DIR = "/home/jenkins_data"
+
         env.JENKINS_WORKSPACE = "${env.JENKINS_HOME}/workspace"
         env.WORKSPACE = "${env.WORKSPACE}"
 
