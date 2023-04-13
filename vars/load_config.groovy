@@ -9,5 +9,6 @@
 */
 
 def call() {
-    return load("${env.JENKINS_PROJECT_CONFIG_DIR}/project_config.groovy")
+    env.JENKINS_CONFIG_DIR = "/etc/jenkins_config"
+    return load("${env.JENKINS_CONFIG_DIR}/config.groovy")
 }

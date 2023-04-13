@@ -17,8 +17,6 @@
 
 def call() {
     node {
-        env.JENKINS_PROJECT_CONFIG_DIR = "/etc/jenkins_project_config"
-
         env.JENKINS_WORKSPACE = "${env.JENKINS_HOME}/workspace"
         env.WORKSPACE = "${env.WORKSPACE}"
 
