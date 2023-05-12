@@ -41,3 +41,39 @@ def write(map) {
     writeFile file:"history_${env.BUILD_USER_ID}.properties", text:historyProperties
     // new File("${env.WORKSPACE}", "history_${env.BUILD_USER_ID}.properties").write(historyProperties)
 }
+
+def parameterScript(param) {
+    return """import hudson.model.User
+def transformStringToMap(map) {
+    def elementDelimiter = map.elementDelimiter ? map.elementDelimiter : "\\n"
+    def keyValueDelimiter = map.keyValueDelimiter ? map.keyValueDelimiter : '='
+
+    return map.target.split(elementDelimiter).collectEntries {
+        def pair = it.split(keyValueDelimiter)
+        [(pair[0].trim()): pair[1].trim()]
+    }
+}
+
+def read(key) {
+    def userId = User.current().getId()
+    def historyProperties = new File("${env.WORKSPACE}", "history_\${userId}.properties").getText()
+    def props = transformStringToMap target: historyProperties, elementDelimiter: "\\n", keyValueDelimiter: '='
+    if(props.isEmpty()) {
+        return ''
+    } else {
+        def value = props[key]
+        if(value) {
+            return value
+        } else {
+            return ''
+        }
+    }
+}
+
+try {
+    return read("${param}")
+} catch (Exception e) {
+    println "\${e}"
+    return ""
+}""",
+}
