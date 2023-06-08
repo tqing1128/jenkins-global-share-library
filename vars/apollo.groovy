@@ -26,3 +26,23 @@ def getClusterList(appId, host, token) {
         return [:]
     }
 }
+
+def getNamespaceData(map) {
+    def url = "http://${map.host}/openapi/v1/envs/${map.env}/apps/${map.appId}/clusters/${map.cluster}/namespaces/${namespace}"
+    def connection = new URL(url).openConnection();
+    connection.setRequestMethod("GET")
+    connection.setDoOutput(true)
+    connection.setRequestProperty("Content-Type", "application/json")
+    connection.setRequestProperty("Authorization", "${map.token}")
+    // connection.getOutputStream().write(jsonContent.getBytes("UTF-8"))
+    def status = connection.getResponseCode()
+    println("response status: ${status}")
+    if(status.equals(200)) {
+        def content = connection.getInputStream().getText()
+        println("response content: ${content}")
+        def ret = new JsonSlurperClassic().parseText(content)
+        return ret
+    } else {
+        return [:]
+    }
+}
