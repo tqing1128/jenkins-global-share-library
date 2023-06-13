@@ -52,7 +52,7 @@ ${env.BUILD_DESCRIPTION}
 """
         },
         failure: {
-            return """# 构建失败😤😤😤
+            return """# <font color=red>构建失败😤😤😤</font>
 
 ---
 
