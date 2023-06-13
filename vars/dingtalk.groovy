@@ -16,6 +16,21 @@ def random = new Random()
 @groovy.transform.Field
 def markdownTemplateConfig = [
     template_1: [
+        start: {
+            return """# 构建开始🚀🚀🚀
+---
+
+### 构建项目: ${env.JOB_NAME}:${env.BUILD_ID}
+
+### 构建用户: ${env.BUILD_USER_NAME}
+
+### 构建时间: ${env.BUILD_DATE}
+
+### 构建描述: ${env.BUILD_DESCRIPTION}
+
+### 构建日志: [点击查看](${env.BUILD_URL}console)
+"""
+        },
         success: {
             return """# 构建成功🥳🥳🥳
 
@@ -30,10 +45,6 @@ def markdownTemplateConfig = [
 ### 构建描述: ${env.BUILD_DESCRIPTION}
 
 ### 构建日志: [点击查看](${env.BUILD_URL}console)
-"""
-        },
-        failure: {
-            return """# 构建失败😤😤😤
 """
         },
         failure: {
