@@ -18,6 +18,7 @@ def markdownTemplateConfig = [
     template_1: [
         start: {
             return """# 构建开始🚀🚀🚀
+
 ---
 
 ### 构建项目: ${env.JOB_NAME}:${env.BUILD_ID}
@@ -34,7 +35,7 @@ ${env.BUILD_DESCRIPTION}
 """
         },
         success: {
-            return """# 构建成功🥳🥳🥳
+            return """# <font color=green>构建成功🥳🥳🥳</font>
 
 ---
 
