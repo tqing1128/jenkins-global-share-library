@@ -26,7 +26,8 @@ def markdownTemplateConfig = [
 
 ### 构建时间: ${env.BUILD_DATE}
 
-### 构建描述: ${env.BUILD_DESCRIPTION}
+### 构建描述:
+${env.BUILD_DESCRIPTION}
 
 ### 构建日志: [点击查看](${env.BUILD_URL}console)
 """
@@ -42,7 +43,8 @@ def markdownTemplateConfig = [
 
 ### 构建时间: ${env.BUILD_DATE}(${env.BUILD_TIME}ms)
 
-### 构建描述: ${env.BUILD_DESCRIPTION}
+### 构建描述:
+${env.BUILD_DESCRIPTION}
 
 ### 构建日志: [点击查看](${env.BUILD_URL}console)
 """
@@ -61,7 +63,7 @@ def markdownTemplateConfig = [
 ### 构建描述: ${env.BUILD_DESCRIPTION}
 
 ### 失败原因:
-> ${env.REASON}
+${env.REASON}
 
 ### 构建日志: [点击查看](${env.BUILD_URL}console)
 """
