@@ -41,7 +41,8 @@ def markdownTemplateConfig = [
 
 ### 构建时间: ${env.BUILD_DATE}(${env.BUILD_TIME}ms)
 
-### 失败原因: ${env.REASON}
+### 失败原因:
+> ${env.REASON}
 
 ### 构建日志: [点击查看](${env.BUILD_URL}console)
 """
