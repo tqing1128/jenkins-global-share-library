@@ -45,3 +45,13 @@ def transformStringToMap(map) {
         [(pair[0].trim()): pair[1].trim()]
     }
 }
+
+def getDirList(map) {
+    def dir = map.dir ? map.dir : '.'
+    def list = sh(returnStdout: true, script: "ls -lt ${dir} | awk '/^d/ {print \$NF}'").trim().split(/\n/)
+    def ret = []
+    for (int i = 0; i < list.size(); i++) {
+        ret.add(dirs[i])
+    }
+    return ret
+}
