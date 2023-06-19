@@ -51,7 +51,7 @@ def getDirList(map) {
     def list = sh(returnStdout: true, script: "ls -lt ${dir} | awk '/^d/ {print \$NF}'").trim().split(/\n/)
     def ret = []
     for (int i = 0; i < list.size(); i++) {
-        ret.add(dirs[i])
+        ret.add(list[i])
     }
     return ret
 }
