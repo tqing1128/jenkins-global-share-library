@@ -28,7 +28,7 @@ def getClusterList(appId, host, token) {
 }
 
 def getNamespaceData(map) {
-    def url = "http://${map.host}/openapi/v1/envs/${map.env}/apps/${map.appId}/clusters/${map.cluster}/namespaces/${namespace}"
+    def url = "http://${map.host}/openapi/v1/envs/${map.env}/apps/${map.appId}/clusters/${map.cluster}/namespaces/${map.namespace}"
     def connection = new URL(url).openConnection();
     connection.setRequestMethod("GET")
     connection.setDoOutput(true)
