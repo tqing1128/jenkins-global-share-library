@@ -27,8 +27,6 @@ def initData() {
 }
 
 def write(key, value) {
-    println "write: ${key}=${value}"
-    println "data: ${data}"
     initData()
     data[key] = value
     def json = JsonOutput.toJson(data)
