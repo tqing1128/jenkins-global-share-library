@@ -5,6 +5,7 @@
     date: 2023-08-22 10:48:46
 */
 
+import groovy.json.JsonOutput
 import java.security.MessageDigest
 
 def clear(appId, appKey, host) {
