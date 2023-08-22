@@ -17,7 +17,8 @@ def initData() {
     if(data) {
         return
     }
-    def json = new File("${env.JENKINS_DATA_DIR}", "db.json").getText()
+    sh "touch ${env.JENKINS_DATA_DIR}/db.json"
+    def json = readFile "${env.JENKINS_DATA_DIR}/db.json"
     if(json) {
         data = new JsonSlurperClassic().parseText(json)
     } else {
