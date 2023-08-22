@@ -11,7 +11,19 @@ import groovy.json.JsonOutput
 import groovy.json.JsonSlurperClassic
 
 @groovy.transform.Field
-def data = []
+def data
+
+def initData() {
+    if(data) {
+        return
+    }
+    def json = readFile file:"${env.JENKINS_DATA_DIR}/db.json"
+    if(json) {
+        data = new JsonSlurperClassic().parseText(json)
+    } else {
+        data = [:]
+    }
+}
 
 def write(key, value) {
     data[key] = value
@@ -20,9 +32,11 @@ def write(key, value) {
 }
 
 def read(key) {
-    return data[key]
+    initData()
+    return data[key] 
 }
 
 def readAll() {
-    return data
+    initData()
+    return data 
 }
