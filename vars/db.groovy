@@ -18,3 +18,11 @@ def write(key, value) {
     def json = JsonOutput.toJson(data)
     writeFile file:"${env.JENKINS_DATA_DIR}/db.json", text:json
 }
+
+def read(key) {
+    return data[key]
+}
+
+def readAll() {
+    return data
+}
