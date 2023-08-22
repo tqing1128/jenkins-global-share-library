@@ -20,7 +20,7 @@ def clear(appId, appKey, host) {
     ]
     def signContent = JsonOutput.toJson(content)
     signContent = "${signContent}${appKey}"
-    def sign = MessageDigest.getInstance("MD5").digest(s.getBytes()).encodeHex().toString()
+    def sign = MessageDigest.getInstance("MD5").digest(signContent.getBytes()).encodeHex().toString()
 
     content.sign = sign
     def jsonContent = JsonOutput.toJson(content)
