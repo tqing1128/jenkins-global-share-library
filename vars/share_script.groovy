@@ -34,7 +34,7 @@ def read(key) {
 
 try {
     def splitDelimiter = ${map.splitDelimiter} ? ${map.splitDelimiter} : ","
-    return read("${map.key}").split(splitDelimiter)
+    return read("${map.key}").split(splitDelimiter).toArray()
 } catch (Exception e) {
     return ["\${e}"]
 }"""
