@@ -21,20 +21,24 @@ def read(key) {
     def text = new File("${map.path}").getText("UTF-8")
     def props = transformStringToMap target: text, elementDelimiter: "\\n", keyValueDelimiter: '='
     if(props.isEmpty()) {
-        return ''
+        return
     } else {
-        def value = props[key]
-        if(value) {
-            return value
-        } else {
-            return ''
-        }
+        return props[key]
     }
 }
 
 try {
     def splitDelimiter = ${map.splitDelimiter} ? ${map.splitDelimiter} : ","
-    return read("${map.key}").split(splitDelimiter)
+    def list = read("${map.key}").split(splitDelimiter)
+    if(list) {
+        def ret = []
+        for (int i = 0; i < list.size(); i++) {
+            ret.add(list[i])
+        }
+        return ret
+    } else {
+        return []
+    }
 } catch (Exception e) {
     return ["\${e}"]
 }"""
