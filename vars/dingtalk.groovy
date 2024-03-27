@@ -158,6 +158,7 @@ def dingText(map) {
             content: text,
         ],
         at:[
+            atMobiles: map.atMobiles,
             atUserIds: map.atUserIds,
             isAtAll: map.isAtAll
         ]
@@ -179,6 +180,7 @@ def dingMarkdown(map) {
             text: text,
         ],
         at:[
+            atMobiles: map.atMobiles,
             atUserIds: map.atUserIds,
             isAtAll: map.isAtAll
         ]
