@@ -166,6 +166,7 @@ def dingText(map) {
 
     def robot = selectRobot(map.robot)
     
+    println "ding text content:${content}"
     def response = robot.ding(content)
     println "ding text response:${response}"
 }
@@ -188,6 +189,7 @@ def dingMarkdown(map) {
 
     def robot = selectRobot(map.robot)
 
+    println "ding markdown content:${content}"
     def response = robot.ding(content)
     println "ding markdown response:${response}"
 }
