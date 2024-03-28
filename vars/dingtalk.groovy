@@ -157,7 +157,7 @@ def dingText(map) {
         text: [
             content: text,
         ],
-        at:[]
+        at:[:]
     ]
 
     if (map.atMobiles) {
@@ -188,7 +188,7 @@ def dingMarkdown(map) {
             title: map.title,
             text: text,
         ],
-        at:[]
+        at:[:]
     ]
 
     if (map.atMobiles) {
