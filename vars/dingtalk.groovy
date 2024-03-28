@@ -168,7 +168,7 @@ def dingText(map) {
         content.at.atUserIds = map.atUserIds
     }
 
-    if (map.isAtAll) {
+    if (null != map.isAtAll) {
         content.at.isAtAll = map.isAtAll
     }
 
@@ -199,7 +199,7 @@ def dingMarkdown(map) {
         content.at.atUserIds = map.atUserIds
     }
 
-    if (map.isAtAll) {
+    if (null != map.isAtAll) {
         content.at.isAtAll = map.isAtAll
     }
 
