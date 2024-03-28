@@ -157,12 +157,20 @@ def dingText(map) {
         text: [
             content: text,
         ],
-        at:[
-            atMobiles: map.atMobiles,
-            atUserIds: map.atUserIds,
-            isAtAll: map.isAtAll
-        ]
+        at:[]
     ]
+
+    if (map.atMobiles) {
+        content.at.atMobiles = map.atMobiles
+    }
+
+    if (map.atUserIds) {
+        content.at.atUserIds = map.atUserIds
+    }
+
+    if (map.isAtAll) {
+        content.at.isAtAll = map.isAtAll
+    }
 
     def robot = selectRobot(map.robot)
     
@@ -180,12 +188,20 @@ def dingMarkdown(map) {
             title: map.title,
             text: text,
         ],
-        at:[
-            atMobiles: map.atMobiles,
-            atUserIds: map.atUserIds,
-            isAtAll: map.isAtAll
-        ]
+        at:[]
     ]
+
+    if (map.atMobiles) {
+        content.at.atMobiles = map.atMobiles
+    }
+
+    if (map.atUserIds) {
+        content.at.atUserIds = map.atUserIds
+    }
+
+    if (map.isAtAll) {
+        content.at.isAtAll = map.isAtAll
+    }
 
     def robot = selectRobot(map.robot)
 
