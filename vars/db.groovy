@@ -11,34 +11,33 @@ import groovy.json.JsonOutput
 import groovy.json.JsonSlurperClassic
 
 @groovy.transform.Field
-def data
+def data = [:]
 
-def initData() {
-    if(data) {
-        return
-    }
-    sh "touch ${env.JENKINS_DATA_DIR}/db.json"
-    def json = readFile "${env.JENKINS_DATA_DIR}/db.json"
+def load(key) {
+    def dir = "${env.JENKINS_DATA_DIR}/db"
+    def name = "${dir}/${key}.json"
+    sh "mkdir -p ${dir}; touch ${name}"
+    def json = readFile name
     if(json) {
-        data = new JsonSlurperClassic().parseText(json)
+        return new JsonSlurperClassic().parseText(json)
     } else {
-        data = [:]
+        return [:]
     }
 }
 
 def write(key, value) {
-    initData()
     data[key] = value
-    def json = JsonOutput.toJson(data)
-    writeFile file:"${env.JENKINS_DATA_DIR}/db.json", text:json
+    def json = JsonOutput.toJson(value)
+    def name = "${env.JENKINS_DATA_DIR}/db/${key}.json"
+    writeFile file:name, text:json
 }
 
 def read(key) {
-    initData()
-    return data[key] 
-}
-
-def readAll() {
-    initData()
-    return data 
+    if(data[key]) {
+        return data[key]
+    } else {
+        def value = load(key)
+        data[key] = value
+        return value
+    }
 }
