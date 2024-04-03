@@ -35,7 +35,8 @@ private def requestApollo(method, url, token, data) {
 
 def getClusterList(appId, host, token) {
     def url = "http://${host}/openapi/v1/apps/${appId}/envclusters"
-    return requestApollo("GET", url, token)
+    def ret = requestApollo("GET", url, token)
+    return ret
 }
 
 def getCluster(map) {
