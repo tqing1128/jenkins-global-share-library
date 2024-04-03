@@ -8,6 +8,7 @@
 import groovy.json.JsonOutput
 import groovy.json.JsonSlurperClassic
 
+@groovy.transform.Field
 private def requestApollo(method, url, token, data) {
     println("requestApollo url: ${url}")
     def connection = new URL(url).openConnection();
