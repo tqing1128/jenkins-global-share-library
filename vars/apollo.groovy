@@ -32,9 +32,9 @@ private def requestApollo(map) {
         def content = connection.getInputStream().getText()
         println("response content: ${content}")
         def ret = new JsonSlurperClassic().parseText(content)
-        return ret
+        return [true, ret]
     } else {
-        return [:]
+        return [false, status]
     }
 }
 
