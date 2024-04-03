@@ -8,8 +8,8 @@
 import groovy.json.JsonOutput
 import groovy.json.JsonSlurperClassic
 
-def request(method, url, token, data) {
-    println("request url: ${url}")
+private def requestApollo(method, url, token, data) {
+    println("requestApollo url: ${url}")
     def connection = new URL(url).openConnection();
     connection.setRequestMethod(method)
     connection.setDoOutput(true)
@@ -35,7 +35,7 @@ def request(method, url, token, data) {
 
 def getClusterList(appId, host, token) {
     def url = "http://${host}/openapi/v1/apps/${appId}/envclusters"
-    return request("GET", url, token)
+    return requestApollo("GET", url, token)
 }
 
 def getCluster(map) {
@@ -46,7 +46,7 @@ def getCluster(map) {
     def token = map.token
 
     def url = "http://${host}/openapi/v1/envs/${env}/apps/${appId}/clusters/${cluster}"
-    return request("GET", url, token)
+    return requestApollo("GET", url, token)
 }
 
 def createCluster(map) {
@@ -64,7 +64,7 @@ def createCluster(map) {
         appId: appId,
         dataChangeCreatedBy: user
     ]
-    return request("POST", url, token, data)
+    return requestApollo("POST", url, token, data)
 }
 
 def getAllNamespace(map) {
@@ -75,7 +75,7 @@ def getAllNamespace(map) {
     def cluster = map.cluster
 
     def url = "http://${host}/openapi/v1/envs/${env}/apps/${appId}/clusters/${cluster}/namespaces"
-    return request("GET", url, token)
+    return requestApollo("GET", url, token)
 }
 
 def getNamespace(map) {
@@ -87,7 +87,7 @@ def getNamespace(map) {
     def namespace = map.namespace
 
     def url = "http://${host}/openapi/v1/envs/${env}/apps/${appId}/clusters/${cluster}/namespaces/${namespace}"
-    return request("GET", url, token)
+    return requestApollo("GET", url, token)
 }
 
 def createNamespace(map) {
@@ -111,7 +111,7 @@ def createNamespace(map) {
         comment: map.comment,
         dataChangeCreatedBy: map.user
     ]
-    return request("POST", url, token, data)
+    return requestApollo("POST", url, token, data)
 }
 
 def getItem(map) {
@@ -124,7 +124,7 @@ def getItem(map) {
     def key = map.key
 
     def url = "http://${host}/openapi/v1/envs/${env}/apps/${appId}/clusters/${cluster}/namespaces/${namespace}/items/${key}"
-    return request("GET", url, token)
+    return requestApollo("GET", url, token)
 }
 
 def createItem(map) {
@@ -147,7 +147,7 @@ def createItem(map) {
         comment: comment,
         dataChangeCreatedBy: user
     ]
-    return request("POST", url, token, data)
+    return requestApollo("POST", url, token, data)
 }
 
 def updateItem(map) {
@@ -173,7 +173,7 @@ def updateItem(map) {
         dataChangeLastModifiedBy: user,
         dataChangeCreatedBy: user
     ]
-    return request("PUT", url, token, data)
+    return requestApollo("PUT", url, token, data)
 }
 
 def deleteItem(map) {
@@ -187,7 +187,7 @@ def deleteItem(map) {
     def user = map.user
 
     def url = "http://${host}/openapi/v1/envs/${env}/apps/${appId}/clusters/${cluster}/namespaces/${namespace}/items/${key}?operator=${user}"
-    return request("DELETE", url, token)
+    return requestApollo("DELETE", url, token)
 }
 
 def releaseNamespace(map) {
@@ -207,5 +207,5 @@ def releaseNamespace(map) {
         releaseComment: comment,
         releasedBy: user
     ]
-    return request("POST", url, token, data)
+    return requestApollo("POST", url, token, data)
 }
