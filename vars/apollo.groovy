@@ -8,18 +8,14 @@
 import groovy.json.JsonOutput
 import groovy.json.JsonSlurperClassic
 
-def request(method, url, token, data, requestProperty) {
+def request(method, url, token, data) {
     println("request url: ${url}")
     def connection = new URL(url).openConnection();
     connection.setRequestMethod(method)
     connection.setDoOutput(true)
     connection.setRequestProperty("Content-Type", "application/json")
     connection.setRequestProperty("Authorization", "${token}")
-    if (requestProperty) {
-        requestProperty.each { k, v ->
-            connection.setRequestProperty(k, v)
-        }
-    }
+    
     if (data) {
         def jsonData = JsonOutput().toJson(data)
         connection.getOutputStream().write(jsonData.getBytes("UTF-8"))
