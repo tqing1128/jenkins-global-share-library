@@ -14,7 +14,7 @@ private def requestApollo(map) {
     def token = map.token
     def data = map.data
 
-    println("requestApollo url: ${url}")
+    println("requestApollo(url: ${url}")
     def connection = new URL(url).openConnection();
     connection.setRequestMethod(method)
     connection.setDoOutput(true)
@@ -40,7 +40,7 @@ private def requestApollo(map) {
 
 def getClusterList(appId, host, token) {
     def url = "http://${host}/openapi/v1/apps/${appId}/envclusters"
-    return requestApollo method: "GET", url: url, token: token
+    return requestApollo(method: "GET", url: url, token: token)
 }
 
 def getCluster(map) {
@@ -51,7 +51,7 @@ def getCluster(map) {
     def token = map.token
 
     def url = "http://${host}/openapi/v1/envs/${env}/apps/${appId}/clusters/${cluster}"
-    return requestApollo method: "GET", url: url, token: token
+    return requestApollo(method: "GET", url: url, token: token)
 }
 
 def createCluster(map) {
@@ -69,7 +69,7 @@ def createCluster(map) {
         appId: appId,
         dataChangeCreatedBy: user
     ]
-    return requestApollo method: "POST", url: url, token: token, data: data
+    return requestApollo(method: "POST", url: url, token: token, data: data)
 }
 
 def getAllNamespace(map) {
@@ -80,7 +80,7 @@ def getAllNamespace(map) {
     def cluster = map.cluster
 
     def url = "http://${host}/openapi/v1/envs/${env}/apps/${appId}/clusters/${cluster}/namespaces"
-    return requestApollo method: "GET", url: url, token: token
+    return requestApollo(method: "GET", url: url, token: token)
 }
 
 def getNamespace(map) {
@@ -92,7 +92,7 @@ def getNamespace(map) {
     def namespace = map.namespace
 
     def url = "http://${host}/openapi/v1/envs/${env}/apps/${appId}/clusters/${cluster}/namespaces/${namespace}"
-    return requestApollo method: "GET", url: url, token: token
+    return requestApollo(method: "GET", url: url, token: token)
 }
 
 def createNamespace(map) {
@@ -116,7 +116,7 @@ def createNamespace(map) {
         comment: map.comment,
         dataChangeCreatedBy: map.user
     ]
-    return requestApollo method: "POST", url: url, token: token, data: data
+    return requestApollo(method: "POST", url: url, token: token, data: data)
 }
 
 def getItem(map) {
@@ -129,7 +129,7 @@ def getItem(map) {
     def key = map.key
 
     def url = "http://${host}/openapi/v1/envs/${env}/apps/${appId}/clusters/${cluster}/namespaces/${namespace}/items/${key}"
-    return requestApollo method: "GET", url: url, token: token
+    return requestApollo(method: "GET", url: url, token: token)
 }
 
 def createItem(map) {
@@ -152,7 +152,7 @@ def createItem(map) {
         comment: comment,
         dataChangeCreatedBy: user
     ]
-    return requestApollo method: "POST", url: url, token: token, data: data
+    return requestApollo(method: "POST", url: url, token: token, data: data)
 }
 
 def updateItem(map) {
@@ -178,7 +178,7 @@ def updateItem(map) {
         dataChangeLastModifiedBy: user,
         dataChangeCreatedBy: user
     ]
-    return requestApollo method: "PUT", url: url, token: token, data: data
+    return requestApollo(method: "PUT", url: url, token: token, data: data)
 }
 
 def deleteItem(map) {
@@ -192,7 +192,7 @@ def deleteItem(map) {
     def user = map.user
 
     def url = "http://${host}/openapi/v1/envs/${env}/apps/${appId}/clusters/${cluster}/namespaces/${namespace}/items/${key}?operator=${user}"
-    return requestApollo method: "DELETE", url: url, token: token
+    return requestApollo(method: "DELETE", url: url, token: token)
 }
 
 def releaseNamespace(map) {
@@ -212,5 +212,5 @@ def releaseNamespace(map) {
         releaseComment: comment,
         releasedBy: user
     ]
-    return requestApollo method: "POST", url: url, token: token, data: data
+    return requestApollo(method: "POST", url: url, token: token, data: data)
 }
