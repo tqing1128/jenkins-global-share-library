@@ -174,7 +174,7 @@ def updateItem(map) {
         key: key,
         value: value,
         comment: comment,
-        dataChangeLastModifiedBy: user
+        dataChangeLastModifiedBy: user,
         dataChangeCreatedBy: user
     ]
     return request("PUT", url, token, data)
